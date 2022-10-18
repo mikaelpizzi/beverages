@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { CategoriesContext } from "../context/CategoriesContext";
+import { RecipesContext } from "../context/RecipesContext";
 
 const Form = () => { 
 
@@ -9,9 +10,10 @@ const Form = () => {
     })
 
     const { categories } = useContext(CategoriesContext);
+    const { searchRecipes } = useContext(RecipesContext);
 
     // Function to reading content
-    const obtainRecipeDate = e => {
+    const obtainRecipeData = e => {
         saveSearch({
             ...search,
             [e.target.name]: e.target.value
@@ -19,7 +21,13 @@ const Form = () => {
     }
 
     return (  
-        <form className="col-12">
+        <form 
+            className="col-12"
+            onSubmit={e => {
+                e.preventDefault();
+                searchRecipes(search);
+            }}
+        >
             <fieldset className="text-center">
                 <legend>Search beverages by Category or Ingredients</legend>
             </fieldset>
@@ -31,14 +39,14 @@ const Form = () => {
                         className="form-control"
                         type="text"
                         placeholder="Search by Ingredient"
-                        onChange={obtainRecipeDate}
+                        onChange={obtainRecipeData}
                     />
                 </div>
                 <div className="col-md-4">
                     <select
                         className="form-control"
                         name="category"
-                        onChange={obtainRecipeDate}
+                        onChange={obtainRecipeData}
                     >
                     <option value="">-- Select Category --</option>
                     { categories.map((category) => (
