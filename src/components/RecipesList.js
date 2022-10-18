@@ -6,7 +6,6 @@ const RecipesList = () => {
 
     // Extract recipes
     const { recipes } = useContext(RecipesContext);
-    console.log(recipes);
 
     return (  
         <div className="row mt-5">
