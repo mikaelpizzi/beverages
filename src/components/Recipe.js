@@ -44,6 +44,21 @@ const Recipe = ({ recipe }) => {
     const { recipeInfo, saveRecipeId, saveRecipe } = useContext(ModalContext);
     console.log(recipeInfo);
 
+    // Show and format the ingredients
+    const showIngredients = info => {
+        let ingredients = [];
+
+        for (let i = 1; i <= 15; i++) {
+            if ( info[`strIngredient${i}`] ) {
+                ingredients.push(
+                    <li>{ info[`strIngredient${i}`] } - { (info[`strMeasure${i}`]) ? info[`strMeasure${i}`] : "to taste" }</li>
+                )
+            }            
+        }
+
+        return ingredients;
+    }
+
     return (  
         <div className="col-md-4 mb-3">
             <div className="card">
@@ -71,12 +86,17 @@ const Recipe = ({ recipe }) => {
                     >
                         <div style={modalStyle} className={classes.paper}>
                             <h2>{recipeInfo.strDrink}</h2>
-                            <h3 className="mt-4">Instructions</h3>
+                            <h3 className="mt-4">Instructions:</h3>
                             <p>
                                 {recipeInfo.strInstructions}
                             </p>
 
                             <img className="img-fluid my-4" src={recipeInfo.strDrinkThumb} />
+
+                            <h3>Ingredients and amounts:</h3>
+                            <ul>
+                                { showIngredients(recipeInfo) }
+                            </ul>
                         </div>
                     </Modal>
                 </div>
