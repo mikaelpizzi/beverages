@@ -51,7 +51,7 @@ const Recipe = ({ recipe }) => {
         for (let i = 1; i <= 15; i++) {
             if ( info[`strIngredient${i}`] ) {
                 ingredients.push(
-                    <li>{ info[`strIngredient${i}`] } - { (info[`strMeasure${i}`]) ? info[`strMeasure${i}`] : "to taste" }</li>
+                    <li key={`${info.idDrink}ingredient${i}`}>{ info[`strIngredient${i}`] } - { (info[`strMeasure${i}`]) ? info[`strMeasure${i}`] : "to taste" }</li>
                 )
             }            
         }
@@ -64,7 +64,7 @@ const Recipe = ({ recipe }) => {
             <div className="card">
                 <h2 className="card-header">{recipe.strDrink}</h2>
 
-                <img className="card-img-top" src={recipe.strDrinkThumb} alt={`Image of ${recipe.strDrink}`} />
+                <img className="card-img-top" src={recipe.strDrinkThumb} alt={`Taking a look at ${recipe.strDrink}`} />
 
                 <div className="card-body">
                     <button
@@ -77,7 +77,7 @@ const Recipe = ({ recipe }) => {
                     >See Recipe</button>
 
                     <Modal
-                        key={recipeInfo.idDrink}
+                        key={`${recipe.idDrink}m`}
                         open={open}
                         onClose={() => {
                             saveRecipeId(null);
@@ -92,7 +92,7 @@ const Recipe = ({ recipe }) => {
                                 {recipeInfo.strInstructions}
                             </p>
 
-                            <img className="img-fluid my-4" src={recipeInfo.strDrinkThumb} />
+                            <img className="img-fluid my-4" src={recipeInfo.strDrinkThumb} alt={`Taking a look at ${recipeInfo.strDrink}`} />
 
                             <h3>Ingredients and amounts:</h3>
                             <ul>
