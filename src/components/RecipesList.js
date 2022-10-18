@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { RecipesContext } from "../context/RecipesContext";
 import Recipe from "./Recipe";
+import PropTypes from 'prop-types';
 
 const RecipesList = () => {
 
@@ -17,6 +18,10 @@ const RecipesList = () => {
             ))}
         </div>
     );
+}
+
+RecipesList.propTypes = {
+    recipes: PropTypes.array
 }
  
 export default RecipesList;
