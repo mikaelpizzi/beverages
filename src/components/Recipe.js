@@ -42,7 +42,6 @@ const Recipe = ({ recipe }) => {
 
     // Extract ModalContext values
     const { recipeInfo, saveRecipeId, saveRecipe } = useContext(ModalContext);
-    console.log(recipeInfo);
 
     // Show and format the ingredients
     const showIngredients = info => {
