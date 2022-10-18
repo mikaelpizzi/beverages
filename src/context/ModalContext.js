@@ -8,7 +8,7 @@ const ModalProvider = (props) => {
 
     // Provider's state
     const [ recipeid, saveRecipeId ] = useState(null);
-    const [ recipe, saveRecipe ] = useState({});
+    const [ recipeInfo, saveRecipe ] = useState({});
 
     // Once a beverage is selected by user, call API for show its details
     useEffect(() => {
@@ -28,7 +28,9 @@ const ModalProvider = (props) => {
     return (  
         <ModalContext.Provider
             value={{
-                saveRecipeId
+                recipeInfo,
+                saveRecipeId,
+                saveRecipe
             }}
         >
             {props.children}
